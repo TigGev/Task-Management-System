@@ -1,6 +1,13 @@
 #include "taskManager.h"
 
 
+// TaskManager::~TaskManager() {
+//     for (Task* task : m_all_tasks) {
+        
+//     }
+// }
+
+
 TaskManager::TaskManager(TaskManager&& other) : m_users(std::move(other.m_users)),
                                                  m_all_tasks(std::move(other.m_all_tasks))
 {}

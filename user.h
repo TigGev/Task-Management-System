@@ -3,6 +3,7 @@
 #include "task.h"
 
 inline void printTaskDontExist() {std::cout << "---- Such a task does not exist. ----" << std::endl;}
+const int invalidUid = -1;
 
 class User {
         static int generalUserId;
@@ -16,9 +17,13 @@ class User {
                     m_uid(generalUserId++),
                      username(name),
                       password(pass) {};
-        ~User() = default;
+        ~User();
         User(const User&) = delete;
         User(User&& other) noexcept;
+        // User& operator= (const User& other);
+        friend std::ostream& operator<< (std::ostream& output, const User& user);
+        friend std::istream& operator>> (std::istream& input, User& user);
+        operator bool() const {return isLogged;};
         void addTask(Task* newTask);
         void deleteTask(int taskId);
         void userEditTask(int taskId,

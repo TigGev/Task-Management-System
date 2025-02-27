@@ -7,6 +7,7 @@ enum class Status {NotStarted, InProgress, Completed};
 
 
 class Task {
+
         static int generalTaskId;
         int m_taskId;
         int m_uId;
@@ -16,6 +17,7 @@ class Task {
         std::string m_category; // work, personal, study
         Priority m_priority;
         Status m_status {Status::NotStarted};
+
     public:
         // Task() : m_taskId(generalTaskId++) {}; 
         ~Task() = default;
@@ -26,6 +28,18 @@ class Task {
                   const Priority& priority);
         Task(const Task& other);
         Task(Task&& other) noexcept;
+        Task& operator= (const Task& rhs);
+        Task& operator= (Task&& rhs) noexcept;
+        bool operator== (const Task& rhs);
+        bool operator!= (const Task& rhs);
+        bool operator> (const Task& rhs);
+        bool operator< (const Task& rhs);
+        Task& operator++();
+        const Task operator++(int);
+        Task& operator--();
+        const Task operator--(int);
+        friend std::ostream& operator<< (std::ostream&, const Task& task);
+        friend std::istream& operator>> (std::istream&, Task& task);
 
         void editTask(const std::string& newTitle,
                        const std::string& newDescription,

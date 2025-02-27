@@ -7,7 +7,7 @@ class TaskManager {
         std::vector<Task*> m_all_tasks;
     public:
         TaskManager() = default;
-        ~TaskManager() = default;
+        ~TaskManager();
         TaskManager(const TaskManager& other) = delete;
         TaskManager(TaskManager&& other);
         TaskManager& operator+= (const TaskManager& rhs);

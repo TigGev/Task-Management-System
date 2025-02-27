@@ -2,12 +2,43 @@
 
 int User::generalUserId = 0;
 
+User::~User() {
+    for (Task* task : tasks) {
+        task->setUid(invalidUid);
+    }
+}
+
 User::User(User&& other) noexcept : m_uid(other.m_uid),
                                      username(std::move(other.username)),
                                       password(std::move(other.password)),
                                        tasks(std::move(other.tasks)),
                                         isLogged(other.isLogged)
 {}
+
+// User& User::operator= (const User& other) {
+    // 
+// }
+
+std::ostream& operator<< (std::ostream& output, const User& user) {
+    output << "Username: " << user.username << "\n";
+    output << "Tasks: ";
+    for (Task* task : user.tasks) {
+        output << task->getTaskId() << " ";
+    }
+    output << std::endl;
+}
+
+
+std::istream& operator>> (std::istream& input, User& user) {
+    std::cout << "Enter a Username: ";
+    input >> user.username;
+    std::cout << std::endl;
+    std::cout << "Enter a Password: ";
+    input >> user.password;
+    std::cout << std::endl;
+    return input;
+}
+
 
 void User::addTask(Task* newTask) {
     
