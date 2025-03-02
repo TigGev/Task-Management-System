@@ -123,9 +123,9 @@ std::ostream& operator<< (std::ostream& os, const Task& task) {
               }
               std::cout << "Status: ";
               switch (task.m_status) {
-                case Status::NotStarted: os << "Not started" << std::endl;
-                case Status::InProgress: os << "In progress" << std::endl;
-                case Status::Completed: os << "Completed" << std::endl;
+                case Status::NotStarted: os << "Not started" << std::endl; break;
+                case Status::InProgress: os << "In progress" << std::endl; break;
+                case Status::Completed: os << "Completed" << std::endl; break;
               }
     os << "-----------------------------------------" << std::endl;
     return os;
