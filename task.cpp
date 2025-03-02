@@ -88,7 +88,10 @@ bool Task::operator< (const Task& rhs) {
 }
 
 Task& Task::operator++() {
-    m_status = static_cast<Status>(static_cast<int>(m_status) + 1);
+    if (m_status != Status::Completed) {
+        m_status = static_cast<Status>(static_cast<int>(m_status) + 1);
+    }
+    return *this;
 }
 
 const Task Task::operator++(int n) {
@@ -98,7 +101,10 @@ const Task Task::operator++(int n) {
 }
 
 Task& Task::operator--() {
-    m_status = static_cast<Status>(static_cast<int>(m_status) - 1);
+    if (m_status != Status::NotStarted) {
+        m_status = static_cast<Status>(static_cast<int>(m_status) - 1);
+    }
+    return *this;
 }
 
 const Task Task::operator--(int) {
