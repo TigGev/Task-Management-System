@@ -58,8 +58,8 @@ void TaskManager::removeTask(int uId, int taskId) {
     }
     for (auto task = m_all_tasks.begin(); task != m_all_tasks.end(); task++) {
         if ((*task)->getTaskId() == taskId) {
-            m_all_tasks.erase(task);
             delete *task;
+            m_all_tasks.erase(task);
             return;
         }
     }
