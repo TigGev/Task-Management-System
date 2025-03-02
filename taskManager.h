@@ -10,7 +10,6 @@ class TaskManager {
         ~TaskManager();
         TaskManager(const TaskManager& other) = delete;
         TaskManager(TaskManager&& other);
-        TaskManager& operator+= (const TaskManager& rhs);
 
         void displayTask(int taskId) const;
         void addTaskForUser(int uId, Task* newTask);

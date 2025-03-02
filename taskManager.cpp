@@ -12,12 +12,6 @@ TaskManager::TaskManager(TaskManager&& other) : m_users(std::move(other.m_users)
                                                  m_all_tasks(std::move(other.m_all_tasks))
 {}
 
-TaskManager& TaskManager::operator+= (const TaskManager& rhs) {
-    m_users.insert(m_users.end(), rhs.m_users.begin(), rhs.m_users.end());
-    m_all_tasks.insert(m_all_tasks.end(), rhs.m_all_tasks.begin(), rhs.m_all_tasks.end());
-    return *this;
-}
-
 void TaskManager::displayTask(int taskId) const {
     for (Task* task : m_all_tasks) {
         if (task->getTaskId() == taskId) {
@@ -68,5 +62,14 @@ void TaskManager::removeTask(int uId, int taskId) {
             delete *task;
             return;
         }
+    }
+}
+
+TaskManager::~TaskManager() {
+    for (User* user : m_users) {
+        delete user;
+    }
+    for (Task* task : m_all_tasks) {
+        delete task;
     }
 }
