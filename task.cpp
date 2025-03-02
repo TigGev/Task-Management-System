@@ -101,6 +101,7 @@ const Task Task::operator++(int n) {
 }
 
 Task& Task::operator--() {
+    
     if (m_status != Status::NotStarted) {
         m_status = static_cast<Status>(static_cast<int>(m_status) - 1);
     }
