@@ -101,7 +101,6 @@ const Task Task::operator++(int n) {
 }
 
 Task& Task::operator--() {
-    
     if (m_status != Status::NotStarted) {
         m_status = static_cast<Status>(static_cast<int>(m_status) - 1);
     }
@@ -141,16 +140,24 @@ std::ostream& operator<< (std::ostream& os, const Task& task) {
 
 std::istream& operator>> (std::istream& is, Task& task) {
     std::cout << "Title: ";
-    is >> task.m_title;
+    is.ignore();
+    std::getline(is,task.m_title);
+    // is >> task.m_title;
     std::cout << std::endl;
     std::cout << "Description: ";
-    is >> task.m_description;
+    is.ignore();
+    std::getline(is,task.m_description);
+    // is >> task.m_description;
     std::cout << std::endl;
     std::cout << "Deadline: ";
-    is >> task.m_deadline;
+    is.ignore();
+    std::getline(is,task.m_deadline);
+    // is >> task.m_deadline;
     std::cout << std::endl;
     std::cout << "Category: ";
-    is >> task.m_category;
+    is.ignore();
+    std::getline(is,task.m_category);
+    // is >> task.m_category;
     std::cout << std::endl;
     int inp = 0;
     do {
