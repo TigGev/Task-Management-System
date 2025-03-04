@@ -25,6 +25,11 @@ int main() {
     std::cout << "\nTasks after deletion:" << std::endl;
     manager.displayTask(1);
 
+    // TaskManager tm2;
+    // tm2 = std::move(manager);
+    // std::cout << "MOVE" << std::endl;
+    // tm2.displayTask(0);
+    
     // Task task = {"Task1", "any description", "08.05.25", "Work", Priority::High};
     // ++task;
     // std::cout << task++;

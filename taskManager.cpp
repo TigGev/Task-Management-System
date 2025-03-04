@@ -12,10 +12,23 @@ TaskManager::TaskManager(TaskManager&& other) : m_users(std::move(other.m_users)
                                                  m_all_tasks(std::move(other.m_all_tasks))
 {}
 
+TaskManager& TaskManager::operator= (TaskManager&& other) noexcept {
+    for (User* user : m_users) {
+        delete user;
+    }
+    for (Task* task : m_all_tasks) {
+        delete task;
+    }
+    
+    m_users = std::move(other.m_users);
+    m_all_tasks = std::move(other.m_all_tasks);
+    return *this;
+}
+
+
 void TaskManager::displayTask(int taskId) const {
     for (Task* task : m_all_tasks) {
         if (task->getTaskId() == taskId) {
-            std::cout << "yes" << std::endl;
             task->display();
             return;
         }
