@@ -26,6 +26,7 @@ std::ostream& operator<< (std::ostream& output, const User& user) {
         output << task->getTaskId() << " ";
     }
     output << std::endl;
+    return output;
 }
 
 

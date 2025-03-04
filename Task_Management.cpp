@@ -25,5 +25,17 @@ int main() {
     std::cout << "\nTasks after deletion:" << std::endl;
     manager.displayTask(1);
 
+    // Task task = {"Task1", "any description", "08.05.25", "Work", Priority::High};
+    // ++task;
+    // std::cout << task++;
+    // std::cout << task;
+    
+    // TaskManager taskM;
+    // taskM.registerUser("Adam", "Aaaa*");
+    // taskM.addTaskForUser(1, &task);
+
+    // Task task;
+    // std::cin >> task;
+    // std::cout << task;
     return 0;
 }

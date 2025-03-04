@@ -123,9 +123,9 @@ std::ostream& operator<< (std::ostream& os, const Task& task) {
               << "Category: " << task.m_category << "\n"
               << "Priority: ";
               switch (task.m_priority) {
-                case Priority::Low: os << "Low" << std::endl;
-                case Priority::Medium: os << "Medium" << std::endl;
-                case Priority::High: os << "High" << std::endl;
+                case Priority::Low: os << "Low" << std::endl; break;
+                case Priority::Medium: os << "Medium" << std::endl; break;
+                case Priority::High: os << "High" << std::endl; break;
               }
               std::cout << "Status: ";
               switch (task.m_status) {
@@ -140,37 +140,25 @@ std::ostream& operator<< (std::ostream& os, const Task& task) {
 
 std::istream& operator>> (std::istream& is, Task& task) {
     std::cout << "Title: ";
-    is.ignore();
     std::getline(is,task.m_title);
-    // is >> task.m_title;
     std::cout << std::endl;
     std::cout << "Description: ";
-    is.ignore();
     std::getline(is,task.m_description);
-    // is >> task.m_description;
     std::cout << std::endl;
     std::cout << "Deadline: ";
-    is.ignore();
     std::getline(is,task.m_deadline);
-    // is >> task.m_deadline;
     std::cout << std::endl;
     std::cout << "Category: ";
-    is.ignore();
     std::getline(is,task.m_category);
-    // is >> task.m_category;
     std::cout << std::endl;
-    int inp = 0;
-    do {
-        std::cout << "Select priority: (1 - Low, 2 - Medium or 3 - High)" << std::endl;
-        is >> inp;
-        switch (inp)
-        {
-        case 1: task.m_priority = Priority::Low; break;
-        case 2: task.m_priority = Priority::Medium; break;
-        case 3: task.m_priority = Priority::High; break;
-        default: std::cout << "Please enter the number between 1 - 3" << std::endl; break;
-        }
-    } while (inp > 0 && inp < 4);
+    int inp = 0;                                                                          
+    std::cout << "Select priority: (1 - Low, 2 - Medium, 3 - High)" << std::endl;                     
+    while (!(is >> inp) || inp < 1 || inp > 3) {                                                      
+      std::cout << "Please enter a number between 1 and 3" << std::endl;                              
+      is.clear();                                                                                     
+      is.ignore(10000, '\n');                                                                         
+    }                    
+
     inp = 0;
     do {
         std::cout << "Select status: (1 - Not started, 2 - In progress or 3 - Completed)" << std::endl;
@@ -182,7 +170,7 @@ std::istream& operator>> (std::istream& is, Task& task) {
         case 3: task.m_status = Status::Completed; break;
         default: std::cout << "Please enter the number between 1 - 3" << std::endl; break;
         }
-    } while (inp > 0 && inp < 4);
+    } while (inp < 1 || inp > 3);
     return is;
 }
 

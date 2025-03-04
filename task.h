@@ -19,7 +19,7 @@ class Task {
         Status m_status {Status::NotStarted};
 
     public:
-        // Task() : m_taskId(generalTaskId++) {}; 
+        Task() : m_taskId(generalTaskId++), m_uId(-1) {}; 
         ~Task() = default;
         Task( const std::string& title,
                const std::string& description,
