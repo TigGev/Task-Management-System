@@ -35,7 +35,7 @@ class User {
         void listTasks() const;
         Task* searchTask(int taskId);
         void login() {isLogged = true;};
-        void logiut() {isLogged = false;}; 
+        void logout() {isLogged = false;}; 
         int getUserId() {return m_uid;};
 };
 
